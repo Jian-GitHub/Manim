@@ -10,6 +10,7 @@ class Jz(Scene):
         logo.shift(UP * 3.55 + LEFT * 5.08)
         self.add(logo)
 
+
         ## Making pvject
         Title = TextMobject("计算机组成原理", color="#9a8cc8")
         Title.scale(3)
