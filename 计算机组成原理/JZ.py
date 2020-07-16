@@ -709,7 +709,7 @@ class Jz(Scene):
                 r"\text{共2个字节}\Rightarrow 2^{^1}"
             ),
             TexMobject(  # 9
-                r"\begin{split} \text{共} \ 4096\ &÷\ (2\times 4)\text{个组}\\ &\Downarrow \\2^{^{12}}\ &÷\ 2^{^3}=2^{^9}\\ &\Downarrow \\ &9\text{位} \end{split}"
+                r"\begin{split} \text{共} \ 4096\times 2\ &÷\ (2\times 4\times 2)\text{个组}\\ &\Downarrow \\2^{^{12}}\ &÷\ 2^{^3}=2^{^9}\\ &\Downarrow \\ &9\text{位} \end{split}"
             ),
             Rectangle(  # 10
                 color=WHITE,
@@ -2767,7 +2767,6 @@ class Jz(Scene):
             ReplacementTransform(字节组虚线内未知[1], 字节组虚线内已知[1])
         )
 
-        '''''
         # Cache 出
         self.play(
             FadeOutAndShiftDown(字节Cache[9], RIGHT * 0.2)
@@ -2779,34 +2778,48 @@ class Jz(Scene):
             FadeOutAndShiftDown(字节Cache[19], RIGHT * 0.2)
         )
         self.play(
-            FadeOutAndShiftDown(字节Cache[14], RIGHT * 0.2),
-            FadeOutAndShiftDown(字节Cache[16], RIGHT * 0.2)
+            FadeOutAndShiftDown(字节Cache[16], RIGHT * 0.2),
+            FadeOutAndShiftDown(字节Cache[14], RIGHT * 0.2)
         )
         self.play(
             FadeOutAndShiftDown(字节Cache[17], RIGHT * 0.2),
-            FadeOutAndShiftDown(字节Cache[18], RIGHT * 0.2),
-            FadeOutAndShiftDown(字节Cache[8], DOWN * 0.2),
-            FadeOutAndShiftDown(字节Cache[21], LEFT * 0.2)
+            FadeOutAndShiftDown(字节Cache[18], RIGHT * 0.2)
         )
         self.play(
-            FadeOutAndShiftDown(字节Cache[12], RIGHT * 0.2),
             FadeOutAndShiftDown(字节Cache[13], RIGHT * 0.2),
-            FadeOutAndShiftDown(字节Cache[15], RIGHT * 0.2),
-            FadeOutAndShiftDown(字节Cache[7], DOWN * 0.2),
-            FadeOutAndShiftDown(字节Cache[20], LEFT * 0.2)
+            FadeOutAndShiftDown(字节Cache[12], RIGHT * 0.2),
+            FadeOutAndShiftDown(字节Cache[15], RIGHT * 0.2)
+        )
+        self.play(
+            FadeOutAndShiftDown(字节Cache[21], LEFT * 0.2),
+            FadeOutAndShiftDown(字节Cache[8], DOWN * 0.2)
+        )
+        self.play(
+            FadeOutAndShiftDown(字节Cache[20], LEFT * 0.2),
+            FadeOutAndShiftDown(字节Cache[7], DOWN * 0.2)
+        )
+        self.play(
+            FadeOutAndShiftDown(字节Cache[28], DOWN * 0.2),
+            FadeOutAndShiftDown(字节Cache[29], DOWN * 0.2)
+        )
+        self.play(
+            FadeOutAndShiftDown(字节Cache[24], DOWN * 0.2),
+            FadeOutAndShiftDown(字节Cache[25], DOWN * 0.2)
         )
         self.play(
             FadeOutAndShiftDown(字节Cache[0], RIGHT * 0.2),
             FadeOutAndShiftDown(字节Cache[1], RIGHT * 0.2),
             FadeOutAndShiftDown(字节Cache[2], RIGHT * 0.2),
             FadeOutAndShiftDown(字节Cache[3], RIGHT * 0.2),
+            FadeOutAndShiftDown(字节Cache[4], RIGHT * 0.2),
             FadeOutAndShiftDown(字节Cache[10], RIGHT * 0.2),
             FadeOutAndShiftDown(字节Cache[11], RIGHT * 0.2),
-            FadeOutAndShiftDown(字节Cache[4], RIGHT * 0.2),
-            FadeOutAndShiftDown(字节Cache[6], RIGHT * 0.2),
-            FadeOutAndShiftDown(字节Cache[3], RIGHT * 0.2)
+            FadeOutAndShiftDown(字节Cache[22], RIGHT * 0.2),
+            FadeOutAndShiftDown(字节Cache[23], RIGHT * 0.2),
+            FadeOutAndShiftDown(字节Cache[26], RIGHT * 0.2),
+            FadeOutAndShiftDown(字节Cache[27], RIGHT * 0.2),
+            FadeOutAndShiftDown(字节Cache[6], RIGHT * 0.2)
         )
-        '''
 
 
 
