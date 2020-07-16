@@ -9,7 +9,7 @@ class Jz(Scene):
         logo.set_height(0.75)
         logo.shift(UP * 3.55 + LEFT * 5.08)
         self.add(logo)
-
+        self.add("Hello!")
 
         ## Making pvject
         Title = TextMobject("计算机组成原理", color="#9a8cc8")
