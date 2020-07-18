@@ -1,4 +1,7 @@
+#!/usr/bin/env python3
+
 from manimlib.imports import *
+
 
 
 class Jz(Scene):
@@ -9,6 +12,10 @@ class Jz(Scene):
         logo.set_height(0.75)
         logo.shift(UP * 3.55 + LEFT * 5.08)
         self.add(logo)
+
+        w = 2
+        i = 1
+        o = 0.5
 
         ## Making pvject
         Title = TextMobject("计算机组成原理", color="#9a8cc8")
@@ -1095,7 +1102,7 @@ class Jz(Scene):
             r"\begin{split}    \text{由主存容量}&:512K\times 16\text{位}\Rightarrow 2^{^{19}}\text{字}\\ \text{可得}&:\text{主存地址为}19\text{位} \end{split}",
             r"\begin{split}    \text{由块长为}&:4\text{个}16\text{位的字}\Rightarrow 2^{^{2}}\text{字}\\ \text{可得}&:\text{字块内地址为}2\text{位} \end{split}",
             r"\begin{split}    &\text{由二路组相联，即分为若干组，其中一组内有2个字块，且一字块内有4个字}\\\text{即:}4096\times 16\text{位}\Rightarrow 2^{^{12}}\text{字; 一块有4个16位的字}\Rightarrow 2^{^2}\text{字}\\&\hspace{0.34cm} 2^{^{12}}÷\ 2^{^2}=2^{^{10}}  \\ \text{可得}&:\text{Cache字块地址为}10\text{位}     \end{split}",
-            r"\begin{split}    \text{则主存字块标记为:}&19-9-2\\&=8\text{位}     \end{split}"
+            r"\begin{split}    \text{则主存字块标记为:}&19-9-3\\&=7\text{位}     \end{split}"
         ]
         字节组答案 = TexMobject(
             字节组回答[0],
@@ -1142,9 +1149,9 @@ class Jz(Scene):
         )
         字节四组虚线内未知.scale(0.7)
         字节四组虚线内已知字段 = [
-            "10",
+            "9",
             "8",
-            "2"
+            "3"
         ]
         字节四组虚线内已知 = TextMobject(
             字节四组虚线内已知字段[0],
@@ -1167,7 +1174,7 @@ class Jz(Scene):
             r"\begin{split}    \text{由主存容量}&:512K\times 32\text{位，然一字16位}\Rightarrow 512K\times 32= 512K\times 16\times 2\\&= 2^{^{20}}\text{字}\\ \text{可得}&:\text{主存地址为}20\text{位} \end{split}",
             r"\begin{split}    \text{由块长为}&:4\text{个}16\text{位的字}\Rightarrow 2^{^{2}}\text{字}\\ \text{可得}&:\text{字块内地址为}2\text{位} \end{split}",
             r"\begin{split}    &\text{由二路组相联，即分为若干组，其中一组内有2个字块，且一字块内有4个字}\\\text{即:}4096\times 16\text{位}\Rightarrow 2^{^{12}}\text{字; 一块有4个16位的字}\Rightarrow 2^{^2}\text{字}\\&\hspace{0.34cm} 2^{^{12}}÷\ 2^{^2}=2^{^{10}}  \\ \text{可得}&:\text{Cache字块地址为}10\text{位}     \end{split}",
-            r"\begin{split}    \text{则主存字块标记为:}&20-8-2\\&=10\text{位}     \end{split}"
+            r"\begin{split}    \text{则主存字块标记为:}&20-8-3\\&=9\text{位}     \end{split}"
         ]
         字节四组答案 = TexMobject(
             字节四组回答[0],
@@ -1214,11 +1221,11 @@ class Jz(Scene):
             TexMobject(  # 7
                 r"\overbrace{\hspace{2.95cm}} "
             ),
-            TextMobject(  # 8
-                "一个16位的字"
+            TexMobject(  # 8
+                r"\text{共2个字节}\Rightarrow 2^{^1}"
             ),
             TexMobject(  # 9
-                r"\begin{split} \text{共} \ 4096\ &÷\ (4\times 4)\ \text{个组}\\ &\Downarrow \\2^{^{12}}\ &÷\ 2^{^4}=2^{^8}\\ &\Downarrow \\ &8\text{位} \end{split}"
+                r"\begin{split} \text{共} \ 4096\times 2\ &÷\ (4\times 4\times 2)\text{个组}\\ &\Downarrow \\2^{^{13}}\ &÷\ 2^{^5}=2^{^8}\\ &\Downarrow \\ &8\text{位} \end{split}"
             ),
             Rectangle(  # 10
                 color=WHITE,
@@ -1248,10 +1255,10 @@ class Jz(Scene):
                 r"\begin{split} \vdots \end{split}"
             ),
             TexMobject(  # 17
-                r"\begin{split} \text{}4&\text{个}\text{字}\\&\Downarrow \\1&\text{个}\text{块}\end{split}"
+                r"\begin{split} \text{}4\times &2\text{个}\text{字节}\\&\Downarrow \\1&\text{个}\text{块}\end{split}"
             ),
             TexMobject(  # 18
-                r"\begin{split} \text{}4&\text{个}\text{字}\\&\Downarrow \\1&\text{个}\text{块}\end{split}"
+                r"\begin{split} \text{}4\times &2\text{个}\text{字节}\\&\Downarrow \\1&\text{个}\text{块}\end{split}"
             ),
             TexMobject(  # 19
                 r"\begin{split} 4&\text{个}\text{块}\\&\Downarrow \\1&\text{个}\text{组}\end{split}"
@@ -1259,7 +1266,35 @@ class Jz(Scene):
             TexMobject(  # 20
                 r"\overbrace{\hspace{2.5cm}} "
             ), TexMobject(  # 21
-                r"\begin{split} \text{共}&4096\text{个字}\\&\Downarrow \\&2^{^{12}}\text{个}\text{字}\end{split}"
+                r"\begin{split} \text{共}4&096\text{个字}\\&\Downarrow \\2^{^{12}}&\times 2^{^1}\text{个}\text{字节}\end{split}"
+            ),
+            Line(  # 22
+                np.array([0, 0.4375, 0]),
+                np.array([0, -0.175, 0]),
+                stroke_width=1
+            ),
+            Line(  # 23
+                np.array([0, 0.1875, 0]),
+                np.array([0, -0.1875, 0]),
+                stroke_width=1
+            ),
+            TexMobject(  # 24
+                r"\overbrace{\hspace{1.4cm}} "
+            ),
+            TexMobject(  # 25
+                r"\overbrace{\hspace{1.4cm}} "
+            ),
+            TexMobject(  # 26
+                r"8b "
+            ),
+            TexMobject(  # 27
+                r"8b "
+            ),
+            TexMobject(  # 28
+                r"1B "
+            ),
+            TexMobject(  # 29
+                r"1B "
             )
         ]
         字节四Cache[4].scale(0.55)
@@ -1267,6 +1302,7 @@ class Jz(Scene):
         字节四Cache[20].scale(0.5)
         字节四Cache[21].scale(0.3)
         字节四Cache[7].scale(0.5)
+        字节四Cache[7].rotate(2 * TAU / 4)
         字节四Cache[6].scale(0.35)
         字节四Cache[8].scale(0.45)
         字节四Cache[9].scale(0.45)
@@ -1283,6 +1319,13 @@ class Jz(Scene):
         字节四Cache[17].scale(0.25)
         字节四Cache[18].scale(0.25)
         字节四Cache[19].scale(0.35)
+
+        字节四Cache[24].scale(0.5)
+        字节四Cache[25].scale(0.5)
+        字节四Cache[26].scale(0.25)
+        字节四Cache[27].scale(0.25)
+        字节四Cache[28].scale(0.35)
+        字节四Cache[29].scale(0.35)
 
         ## 字节Position
         字节地址内字[0].shift(DOWN * 0 + LEFT * 0.52)
@@ -1513,7 +1556,7 @@ class Jz(Scene):
         for i in range(30):
             字节Cache[i].shift(LEFT * 1.0 )
 
-        # 四Cache
+        # 字节四Cache
         字节四Cache[1].next_to(字节四Cache[0].get_corner(DOWN), 0)
         字节四Cache[2].next_to(字节四Cache[1].get_corner(DOWN), 0)
         字节四Cache[3].next_to(字节四Cache[2].get_corner(DOWN), 0)
@@ -1527,7 +1570,7 @@ class Jz(Scene):
         字节四Cache[5].shift(LEFT * 2.6 + DOWN * 0.73)
         字节四Cache[6].next_to(字节四Cache[11], DOWN)
         字节四Cache[7].next_to(字节四Cache[0], UP)
-        字节四Cache[7].shift(DOWN * 0.12)
+        字节四Cache[7].shift(UP * 0.18)
         字节四Cache[8].next_to(字节四Cache[7], UP)
         字节四Cache[8].shift(DOWN * 0.2)
         字节四Cache[9].next_to(字节四Cache[5], LEFT)
@@ -1535,7 +1578,7 @@ class Jz(Scene):
         字节四Cache[12].shift(DOWN * 0.125 + LEFT * 1.12)
         字节四Cache[13].next_to(字节四Cache[12], 0)
         字节四Cache[13].shift(DOWN * 0.53)
-        字节四Cache[14].shift(DOWN * 0.47 + LEFT * 1.8)
+        字节四Cache[14].shift(DOWN * 0.385 + LEFT * 1.8)
         字节四Cache[15].next_to(字节四Cache[13], 0)
         字节四Cache[15].shift(DOWN * 0.53 + RIGHT * 0.02)
         字节四Cache[16].next_to(字节四Cache[14], 0)
@@ -1549,7 +1592,55 @@ class Jz(Scene):
         字节四Cache[20].next_to(字节四Cache[5], 0)
         字节四Cache[20].shift(RIGHT * 3.8)
         字节四Cache[21].next_to(字节四Cache[20], 0)
-        字节四Cache[21].shift(RIGHT * 0.473)
+        字节四Cache[21].shift(RIGHT * 0.673)
+
+        字节四Cache[22].next_to(字节四Cache[1], 0)
+        字节四Cache[22].shift(DOWN * 0.0625)
+
+        字节四Cache[23].next_to(字节四Cache[11], 0)
+        字节四Cache[23].shift(LEFT * 0 + UP * 0.0625 + DOWN * 0.0)
+        字节四Cache[24].next_to(字节四Cache[0], 0)
+        字节四Cache[24].shift(RIGHT * 0.5 + UP * 0.25)
+
+        字节四Cache[25].next_to(字节四Cache[0], 0)
+        字节四Cache[25].shift(LEFT * 0.5 + UP * 0.25)
+        字节四Cache[26].next_to(字节四Cache[0], 0)
+        字节四Cache[26].shift(RIGHT * 0.5 + UP * 0.0625)
+
+        字节四Cache[27].next_to(字节四Cache[0], 0)
+        字节四Cache[27].shift(LEFT * 0.5 + UP * 0.0625)
+        字节四Cache[28].next_to(字节四Cache[0], 0)
+        字节四Cache[28].shift(RIGHT * 0.5 + UP * 0.45)
+        字节四Cache[29].next_to(字节四Cache[0], 0)
+        字节四Cache[29].shift(LEFT * 0.5 + UP * 0.45)
+
+        字节四Cache[17].shift(LEFT * 0.05)
+        字节四Cache[18].shift(LEFT * 0.05)
+        字节四Cache[19].shift(LEFT * (0.05 + 0.05))
+        字节四Cache[14].shift(LEFT * (0.05 + 0.05))
+        字节四Cache[21].shift(LEFT * (0.05 + 0.05))
+        字节四Cache[16].shift(LEFT * (0.05 + 0.05))
+        字节四Cache[5].shift(LEFT * (0.05 + 0.05))
+
+        for i in range(30):
+            字节四Cache[i].shift(LEFT * 1.0)
+
+        字节四Cache[14].shift(DOWN * 0.1 + RIGHT * 0.0)
+        字节四Cache[16].next_to(字节四Cache[14], 0)
+        字节四Cache[16].shift(DOWN * 0.88 + RIGHT * 0.02)
+        字节四Cache[17].next_to(字节四Cache[12], 0)
+        字节四Cache[18].next_to(字节四Cache[13], 0)
+        字节四Cache[19].next_to(字节四Cache[14], 0)
+        字节四Cache[17].shift(LEFT * 0.38)
+        字节四Cache[18].shift(LEFT * 0.38)
+        字节四Cache[19].shift(LEFT * 0.385)
+        字节四Cache[20].next_to(字节四Cache[5], 0)
+        字节四Cache[20].shift(RIGHT * 3.8)
+        字节四Cache[21].next_to(字节四Cache[20], 0)
+        字节四Cache[21].shift(RIGHT * 0.573)
+
+        for i in range(2):
+            字节四Cache[7 + i].shift(DOWN * ( 2.7 + (i * 0.5) ))
 
 
 
@@ -1670,10 +1761,6 @@ class Jz(Scene):
         四组答案[2].next_to(0, 0)
         四组答案[3].next_to(0, 0)
 
-        '''''
-        答案[0].shift(UP * 0.5 + RIGHT * 5)
-        答案[1].shift(LEFT * 1)
-        '''
         答案[0].next_to(0, 0)
         答案[1].next_to(0, 0)
         答案[2].next_to(0,0)
@@ -1783,7 +1870,7 @@ class Jz(Scene):
         ## showing object
 
         # 导引线条
-        self.play(Write(Line1),Write(Line3),Write(Line4))
+        #self.play(Write(Line1),Write(Line3),Write(Line4))
 
         # 画标题
         self.play(Write(line1), Write(T1), Write(T))
@@ -1792,13 +1879,14 @@ class Jz(Scene):
 
         #内容开始
         self.play(
+            Write(例题),
+            run_time = w
+        )
+        self.play(
             Write(字编址),
             FadeIn(T2.set_color("#fdafc0"))
         )
-        self.play(
-            Write(例题)
-        )
-        '''''
+
         #第一问开始
         self.play(
             FadeInFrom(问题[0],UP)
@@ -1813,10 +1901,12 @@ class Jz(Scene):
         self.play(
             Write(虚线内未知)
         )
+        self.wait(0.5)
         self.play(
-            Write(答案[0])
+            Write(答案[0]),
+            run_time = w
         )
-
+        self.wait(1.5)
         self.play(
             FadeOutAndShiftDown(答案[0],UP)
         )
@@ -1827,6 +1917,7 @@ class Jz(Scene):
         self.play(
             FadeInFrom(地址括号上字,DOWN)
         )
+        self.wait(1)
         self.play(
             Write(答案[1]),
             Write(块内[0]),
@@ -1834,20 +1925,29 @@ class Jz(Scene):
             Write(块内[2]),
             Write(块内[3]),
             Write(块内[4]),
-            FadeIn(块内[6])
+            FadeIn(块内[6]),
+            run_time = 1.5
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(块内[5], RIGHT*0.2),
-            FadeInFrom(块内[7], DOWN*0.2)
+            FadeInFrom(块内[7], DOWN*0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(块内[9], RIGHT * 0.2),
-            FadeInFrom(块内[8], DOWN * 0.2)
+            FadeInFrom(块内[8], DOWN * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.5)
+        self.play(
+            ReplacementTransform(虚线内未知[2], 虚线内已知[2])
+        )
+        self.wait(1.5)
 
         self.play(
             FadeOutAndShiftDown(答案[1], UP),
-            ReplacementTransform(虚线内未知[2], 虚线内已知[2]),
             FadeOutAndShiftDown(块内[0], RIGHT),
             FadeOutAndShiftDown(块内[1], RIGHT),
             FadeOutAndShiftDown(块内[2], RIGHT),
@@ -1857,22 +1957,29 @@ class Jz(Scene):
             FadeOutAndShiftDown(块内[6], RIGHT),
             FadeOutAndShiftDown(块内[7], RIGHT),
             FadeOutAndShiftDown(块内[8], RIGHT),
-            FadeOutAndShiftDown(块内[9], RIGHT),
+            FadeOutAndShiftDown(块内[9], RIGHT)
         )
+        self.wait(1)
         self.play(
-            Write(答案[2])
+            Write(答案[2]),
+            run_time = w
         )
+        self.wait(1.5)
         self.play(
             FadeOutAndShiftDown(答案[2], UP),
             ReplacementTransform(虚线内未知[1], 虚线内已知[1])
         )
+        self.wait(1)
         self.play(
-            Write(答案[3])
+            Write(答案[3]),
+            run_time = w
         )
+        self.wait(1.5)
         self.play(
             FadeOutAndShiftDown(答案[3], UP),
             ReplacementTransform(虚线内未知[0], 虚线内已知[0])
         )
+        self.wait(0.5)
         self.play(
             FadeOutAndShiftDown(地址括号, UP),
             FadeOutAndShiftDown(地址括号上字, UP)
@@ -1882,6 +1989,7 @@ class Jz(Scene):
             ApplyMethod(地址虚线.shift, UP * 1.8),
             ApplyMethod(虚线内已知.shift, UP * 1.8),
         )
+        self.wait(1.5)
         self.play(
             FadeOut(地址),
             FadeOut(地址虚线),
@@ -1908,13 +2016,17 @@ class Jz(Scene):
         self.play(
             Write(全虚线内未知)
         )
+        self.wait(0.5)
         self.play(
-            Write(答案[0])
+            Write(答案[0]),
+            run_time = w
         )
+        self.wait(1.5)
 
         self.play(
             FadeOutAndShiftDown(答案[0], UP)
         )
+        self.wait(0.3)
 
         self.play(
             FadeInFrom(全地址括号, DOWN)
@@ -1922,6 +2034,7 @@ class Jz(Scene):
         self.play(
             FadeInFrom(全地址括号上字, DOWN)
         )
+        self.wait(1)
         self.play(
             Write(答案[1]),
             Write(块内[0]),
@@ -1929,20 +2042,29 @@ class Jz(Scene):
             Write(块内[2]),
             Write(块内[3]),
             Write(块内[4]),
-            FadeIn(块内[6])
+            FadeIn(块内[6]),
+            run_time = w
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(块内[5], RIGHT * 0.2),
-            FadeInFrom(块内[7], DOWN * 0.2)
+            FadeInFrom(块内[7], DOWN * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(块内[9], RIGHT * 0.2),
-            FadeInFrom(块内[8], DOWN * 0.2)
+            FadeInFrom(块内[8], DOWN * 0.2),
+            run_time = 1
         )
+        self.wait(0.5)
+        self.play(
+            ReplacementTransform(全虚线内未知[1], 全虚线内已知[1])
+        )
+        self.wait(1.5)
 
         self.play(
             FadeOutAndShiftDown(答案[1], UP),
-            ReplacementTransform(全虚线内未知[1], 全虚线内已知[1]),
             FadeOutAndShiftDown(块内[0], RIGHT),
             FadeOutAndShiftDown(块内[1], RIGHT),
             FadeOutAndShiftDown(块内[2], RIGHT),
@@ -1952,15 +2074,19 @@ class Jz(Scene):
             FadeOutAndShiftDown(块内[6], RIGHT),
             FadeOutAndShiftDown(块内[7], RIGHT),
             FadeOutAndShiftDown(块内[8], RIGHT),
-            FadeOutAndShiftDown(块内[9], RIGHT),
+            FadeOutAndShiftDown(块内[9], RIGHT)
         )
+        self.wait(1)
         self.play(
-            Write(全答案[0])
+            Write(全答案[0]),
+            run_time = w
         )
+        self.wait(1.5)
         self.play(
             FadeOutAndShiftDown(全答案[0], UP),
             ReplacementTransform(全虚线内未知[0], 全虚线内已知[0])
         )
+        self.wait(1)
         self.play(
             FadeOutAndShiftDown(全地址括号, UP),
             FadeOutAndShiftDown(全地址括号上字, UP)
@@ -1970,11 +2096,13 @@ class Jz(Scene):
             ApplyMethod(全地址虚线.shift, UP * 1.8),
             ApplyMethod(全虚线内已知.shift, UP * 1.8),
         )
+        self.wait(1.5)
         self.play(
             FadeOut(全地址),
             FadeOut(全地址虚线),
             FadeOut(全虚线内已知)
         )
+        self.wait(0.5)
         self.play(
             FadeOutAndShiftDown(问题[1], DOWN),
             FadeInFrom(问题[2], UP)
@@ -1992,9 +2120,12 @@ class Jz(Scene):
         self.play(
             Write(组虚线内未知)
         )
+        self.wait(0.5)
         self.play(
-            Write(答案[0])
+            Write(答案[0]),
+            run_time = w
         )
+        self.wait(1.5)
 
         self.play(
             FadeOutAndShiftDown(答案[0], UP)
@@ -2006,6 +2137,7 @@ class Jz(Scene):
         self.play(
             FadeInFrom(组地址括号上字, DOWN)
         )
+        self.wait(1)
         self.play(
             Write(答案[1]),
             Write(块内[0]),
@@ -2013,19 +2145,27 @@ class Jz(Scene):
             Write(块内[2]),
             Write(块内[3]),
             Write(块内[4]),
-            FadeIn(块内[6])
+            FadeIn(块内[6]),
+            run_time = w
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(块内[5], RIGHT * 0.2),
-            FadeInFrom(块内[7], DOWN * 0.2)
+            FadeInFrom(块内[7], DOWN * 0.2),
+            run_time = 0.5
         )
         self.play(
             FadeInFrom(块内[9], RIGHT * 0.2),
-            FadeInFrom(块内[8], DOWN * 0.2)
+            FadeInFrom(块内[8], DOWN * 0.2),
+            run_time = 1
         )
+        self.wait(0.75)
+        self.play(
+            ReplacementTransform(组虚线内未知[2], 组虚线内已知[2])
+        )
+        self.wait(1.5)
         self.play(
             FadeOutAndShiftDown(答案[1], UP),
-            ReplacementTransform(组虚线内未知[2], 组虚线内已知[2]),
             FadeOutAndShiftDown(块内[0], RIGHT),
             FadeOutAndShiftDown(块内[1], RIGHT),
             FadeOutAndShiftDown(块内[2], RIGHT),
@@ -2035,8 +2175,9 @@ class Jz(Scene):
             FadeOutAndShiftDown(块内[6], RIGHT),
             FadeOutAndShiftDown(块内[7], RIGHT),
             FadeOutAndShiftDown(块内[8], RIGHT),
-            FadeOutAndShiftDown(块内[9], RIGHT),
+            FadeOutAndShiftDown(块内[9], RIGHT)
         )
+        self.wait(1)
 
         #Cache 入
         self.play(
@@ -2047,74 +2188,102 @@ class Jz(Scene):
             Write(Cache[4]),
             Write(Cache[10]),
             Write(Cache[11]),
-            FadeIn(Cache[6])
+            FadeIn(Cache[6]),
+            run_time = w
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(Cache[20], LEFT * 0.2),
-            FadeInFrom(Cache[7], DOWN * 0.2)
+            FadeInFrom(Cache[7], DOWN * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(Cache[21], LEFT * 0.2),
-            FadeInFrom(Cache[8], DOWN * 0.2)
+            FadeInFrom(Cache[8], DOWN * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(Cache[12], RIGHT * 0.2),
-            FadeInFrom(Cache[13], RIGHT * 0.2)
+            FadeInFrom(Cache[13], RIGHT * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(Cache[17], RIGHT * 0.2),
-            FadeInFrom(Cache[18], RIGHT * 0.2)
+            FadeInFrom(Cache[18], RIGHT * 0.2),
+            run_time = 0.5
+        )
+        self.wait(0.3)
+        self.play(
+            Write(Cache[15]),
+            run_time = 0.5
+        )
+        self.wait(0.3)
+        self.play(
+            FadeInFrom(Cache[14], RIGHT * 0.2),
+            run_time = 0.5
+        )
+        self.wait(0.3)
+        self.play(
+            FadeInFrom(Cache[19], RIGHT * 0.2),
+            run_time = 0.5
+        )
+        self.wait(0.3)
+        self.play(
+            Write(Cache[16]),
+            run_time = 0.5
+        )
+        self.wait(0.3)
+        self.play(
+            FadeInFrom(Cache[5], RIGHT * 0.2),
+            run_time = 0.5
         )
         self.play(
-            Write(Cache[15])
+            FadeInFrom(Cache[9], RIGHT * 0.2),
+            run_time = 0.5
         )
-        self.play(
-            FadeInFrom(Cache[14], RIGHT * 0.2)
-        )
-        self.play(
-            FadeInFrom(Cache[19], RIGHT * 0.2)
-        )
-        self.play(
-            Write(Cache[16])
-        )
-        self.play(
-            FadeInFrom(Cache[5], RIGHT * 0.2)
-        )
-        self.play(
-            FadeInFrom(Cache[9], RIGHT * 0.2)
-        )
+        self.wait(0.3)
 
         #答案
         self.play(
             ReplacementTransform(组虚线内未知[1], 组虚线内已知[1])
         )
+        self.wait(1.5)
 
         #Cache 出
         self.play(
-            FadeOutAndShiftDown(Cache[9], RIGHT * 0.2)
+            FadeOutAndShiftDown(Cache[9], RIGHT * 0.2),
+            run_time = o
         )
         self.play(
-            FadeOutAndShiftDown(Cache[5], RIGHT * 0.2)
+            FadeOutAndShiftDown(Cache[5], RIGHT * 0.2),
+            run_time=o
         )
         self.play(
-            FadeOutAndShiftDown(Cache[19], RIGHT * 0.2)
+            FadeOutAndShiftDown(Cache[19], RIGHT * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(Cache[14], RIGHT * 0.2),
-            FadeOutAndShiftDown(Cache[16], RIGHT * 0.2)
+            FadeOutAndShiftDown(Cache[16], RIGHT * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(Cache[17], RIGHT * 0.2),
             FadeOutAndShiftDown(Cache[18], RIGHT * 0.2),
             FadeOutAndShiftDown(Cache[8], DOWN * 0.2),
-            FadeOutAndShiftDown(Cache[21], LEFT * 0.2)
+            FadeOutAndShiftDown(Cache[21], LEFT * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(Cache[12], RIGHT * 0.2),
             FadeOutAndShiftDown(Cache[13], RIGHT * 0.2),
             FadeOutAndShiftDown(Cache[15], RIGHT * 0.2),
             FadeOutAndShiftDown(Cache[7], DOWN * 0.2),
-            FadeOutAndShiftDown(Cache[20], LEFT * 0.2)
+            FadeOutAndShiftDown(Cache[20], LEFT * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(Cache[0], RIGHT * 0.2),
@@ -2127,14 +2296,18 @@ class Jz(Scene):
             FadeOutAndShiftDown(Cache[6], RIGHT * 0.2),
             FadeOutAndShiftDown(Cache[3], RIGHT * 0.2)
         )
+        self.wait(1)
         self.play(
-            Write(组答案[3])
+            Write(组答案[3]),
+            run_time = w
         )
+        self.wait(1)
 
         self.play(
             FadeOutAndShiftDown(组答案[3], UP),
             ReplacementTransform(组虚线内未知[0], 组虚线内已知[0])
         )
+        self.wait(1.5)
 
         self.play(
             FadeOutAndShiftDown(组地址括号, UP),
@@ -2145,6 +2318,7 @@ class Jz(Scene):
             ApplyMethod(组地址虚线.shift, UP * 1.8),
             ApplyMethod(组虚线内已知.shift, UP * 1.8),
         )
+        self.wait(1.5)
         self.play(
             FadeOut(组地址),
             FadeOut(组地址虚线),
@@ -2168,9 +2342,12 @@ class Jz(Scene):
         self.play(
             Write(四组虚线内未知)
         )
+        self.wait(0.5)
         self.play(
-            Write(四组答案[0])
+            Write(四组答案[0]),
+            run_time = w
         )
+        self.wait(1.5)
 
         self.play(
             FadeOutAndShiftDown(四组答案[0], UP)
@@ -2182,6 +2359,7 @@ class Jz(Scene):
         self.play(
             FadeInFrom(四组地址括号上字, DOWN)
         )
+        self.wait(1)
         self.play(
             Write(答案[1]),
             Write(块内[0]),
@@ -2189,20 +2367,28 @@ class Jz(Scene):
             Write(块内[2]),
             Write(块内[3]),
             Write(块内[4]),
-            FadeIn(块内[6])
+            FadeIn(块内[6]),
+            run_time = w
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(块内[5], RIGHT * 0.2),
-            FadeInFrom(块内[7], DOWN * 0.2)
+            FadeInFrom(块内[7], DOWN * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(块内[9], RIGHT * 0.2),
-            FadeInFrom(块内[8], DOWN * 0.2)
+            FadeInFrom(块内[8], DOWN * 0.2),
+            run_time = 0.5
         )
-
+        self.wait(0.75)
+        self.play(
+            ReplacementTransform(四组虚线内未知[2], 四组虚线内已知[2])
+        )
+        self.wait(1.5)
         self.play(
             FadeOutAndShiftDown(答案[1], UP),
-            ReplacementTransform(四组虚线内未知[2], 四组虚线内已知[2]),
             FadeOutAndShiftDown(块内[0], RIGHT),
             FadeOutAndShiftDown(块内[1], RIGHT),
             FadeOutAndShiftDown(块内[2], RIGHT),
@@ -2212,8 +2398,9 @@ class Jz(Scene):
             FadeOutAndShiftDown(块内[6], RIGHT),
             FadeOutAndShiftDown(块内[7], RIGHT),
             FadeOutAndShiftDown(块内[8], RIGHT),
-            FadeOutAndShiftDown(块内[9], RIGHT),
+            FadeOutAndShiftDown(块内[9], RIGHT)
         )
+        self.wait(1)
         # 四Cache 入
         self.play(
             Write(四Cache[0]),
@@ -2223,74 +2410,103 @@ class Jz(Scene):
             Write(四Cache[4]),
             Write(四Cache[10]),
             Write(四Cache[11]),
-            FadeIn(四Cache[6])
+            FadeIn(四Cache[6]),
+            run_time = w
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(四Cache[20], LEFT * 0.2),
-            FadeInFrom(四Cache[7], DOWN * 0.2)
+            FadeInFrom(四Cache[7], DOWN * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(四Cache[21], LEFT * 0.2),
-            FadeInFrom(四Cache[8], DOWN * 0.2)
+            FadeInFrom(四Cache[8], DOWN * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(四Cache[12], RIGHT * 0.2),
-            FadeInFrom(四Cache[13], RIGHT * 0.2)
+            FadeInFrom(四Cache[13], RIGHT * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(四Cache[17], RIGHT * 0.2),
-            FadeInFrom(四Cache[18], RIGHT * 0.2)
+            FadeInFrom(四Cache[18], RIGHT * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
-            Write(四Cache[15])
+            Write(四Cache[15]),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
-            FadeInFrom(四Cache[14], RIGHT * 0.2)
+            FadeInFrom(四Cache[14], RIGHT * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
-            FadeInFrom(四Cache[19], RIGHT * 0.2)
+            FadeInFrom(四Cache[19], RIGHT * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
-            Write(四Cache[16])
+            Write(四Cache[16]),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
-            FadeInFrom(四Cache[5], RIGHT * 0.2)
+            FadeInFrom(四Cache[5], RIGHT * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
-            FadeInFrom(四Cache[9], RIGHT * 0.2)
+            FadeInFrom(四Cache[9], RIGHT * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.75)
 
         # 答案
         self.play(
             ReplacementTransform(四组虚线内未知[1], 四组虚线内已知[1])
         )
+        self.wait(1.5)
 
         # Cache 出
         self.play(
-            FadeOutAndShiftDown(四Cache[9], RIGHT * 0.2)
+            FadeOutAndShiftDown(四Cache[9], RIGHT * 0.2),
+            run_time = o
         )
         self.play(
-            FadeOutAndShiftDown(四Cache[5], RIGHT * 0.2)
+            FadeOutAndShiftDown(四Cache[5], RIGHT * 0.2),
+            run_time = o
         )
         self.play(
-            FadeOutAndShiftDown(四Cache[19], RIGHT * 0.2)
+            FadeOutAndShiftDown(四Cache[19], RIGHT * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(四Cache[14], RIGHT * 0.2),
-            FadeOutAndShiftDown(四Cache[16], RIGHT * 0.2)
+            FadeOutAndShiftDown(四Cache[16], RIGHT * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(四Cache[17], RIGHT * 0.2),
             FadeOutAndShiftDown(四Cache[18], RIGHT * 0.2),
             FadeOutAndShiftDown(四Cache[8], DOWN * 0.2),
-            FadeOutAndShiftDown(四Cache[21], LEFT * 0.2)
+            FadeOutAndShiftDown(四Cache[21], LEFT * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(四Cache[12], RIGHT * 0.2),
             FadeOutAndShiftDown(四Cache[13], RIGHT * 0.2),
             FadeOutAndShiftDown(四Cache[15], RIGHT * 0.2),
             FadeOutAndShiftDown(四Cache[7], DOWN * 0.2),
-            FadeOutAndShiftDown(四Cache[20], LEFT * 0.2)
+            FadeOutAndShiftDown(四Cache[20], LEFT * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(四Cache[0], RIGHT * 0.2),
@@ -2303,14 +2519,18 @@ class Jz(Scene):
             FadeOutAndShiftDown(四Cache[6], RIGHT * 0.2),
             FadeOutAndShiftDown(四Cache[3], RIGHT * 0.2)
         )
+        self.wait(1)
         self.play(
-            Write(四组答案[3])
+            Write(四组答案[3]),
+            run_time = w
         )
+        self.wait(1.5)
 
         self.play(
             FadeOutAndShiftDown(四组答案[3], UP),
             ReplacementTransform(四组虚线内未知[0], 四组虚线内已知[0])
         )
+        self.wait(1)
 
         self.play(
             FadeOutAndShiftDown(四组地址括号, UP),
@@ -2321,6 +2541,7 @@ class Jz(Scene):
             ApplyMethod(四组地址虚线.shift, UP * 1.8),
             ApplyMethod(四组虚线内已知.shift, UP * 1.8),
         )
+        self.wait(1.5)
         self.play(
             FadeOut(四组地址),
             FadeOut(四组地址虚线),
@@ -2333,7 +2554,6 @@ class Jz(Scene):
             FadeOut(问题[3])
         )
 
-        '''''
         ###字编址结束
         self.play(
             FadeOut(字编址),
@@ -2346,7 +2566,7 @@ class Jz(Scene):
         ###字节编址开始
         # 第一问开始
         self.play(
-            FadeInFrom(问题[0], UP)
+            Write(问题[0])
         )
 
         self.play(
@@ -2359,12 +2579,15 @@ class Jz(Scene):
             Write(字节虚线内未知)
         )
         self.play(
-            Write(字节答案[0])
+            Write(字节答案[0]),
+            run_time = w
         )
+        self.wait(1.5)
 
         self.play(
             FadeOutAndShiftDown(字节答案[0], UP)
         )
+        self.wait(1)
 
         self.play(
             FadeInFrom(字节地址括号, DOWN)
@@ -2372,6 +2595,7 @@ class Jz(Scene):
         self.play(
             FadeInFrom(字节地址括号上字, DOWN)
         )
+        self.wait(1)
         #块内开始
 
         self.play(
@@ -2384,54 +2608,76 @@ class Jz(Scene):
             Write(字节块内[11]),
             Write(字节块内[14]),
             Write(字节块内[15]),
-            FadeIn(字节块内[6])
+            FadeIn(字节块内[6]),
+            run_time = w
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(字节块内[12], DOWN * 0.2),
-            FadeInFrom(字节块内[13], DOWN * 0.2)
+            FadeInFrom(字节块内[13], DOWN * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(字节块内[16], DOWN * 0.2),
-            FadeInFrom(字节块内[17], DOWN * 0.2)
+            FadeInFrom(字节块内[17], DOWN * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(字节块内[5], RIGHT * 0.2),
-            FadeInFrom(字节块内[7], DOWN * 0.2)
+            FadeInFrom(字节块内[7], DOWN * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(字节块内[9], RIGHT * 0.2),
-            FadeInFrom(字节块内[8], DOWN * 0.2)
+            FadeInFrom(字节块内[8], DOWN * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
             Write(字节块内[18]),
-            Write(字节块内[19])
+            Write(字节块内[19]),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
-            Write(字节块内[20])
+            Write(字节块内[20]),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
-            ReplacementTransform(字节虚线内未知[2], 字节虚线内已知[2]),
+            ReplacementTransform(字节虚线内未知[2], 字节虚线内已知[2])
+        )
+        self.wait(1.5)
+        self.play(
             FadeOut(字节块内[20])
         )
         self.play(
             FadeOut(字节块内[18]),
-            FadeOut(字节块内[19])
+            FadeOut(字节块内[19]),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(字节块内[9], RIGHT * 0.2),
-            FadeOutAndShiftDown(字节块内[8], DOWN * 0.2)
+            FadeOutAndShiftDown(字节块内[8], DOWN * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(字节块内[5], RIGHT * 0.2),
-            FadeOutAndShiftDown(字节块内[7], DOWN * 0.2)
+            FadeOutAndShiftDown(字节块内[7], DOWN * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(字节块内[16], DOWN * 0.2),
-            FadeOutAndShiftDown(字节块内[17], DOWN * 0.2)
+            FadeOutAndShiftDown(字节块内[17], DOWN * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(字节块内[12], DOWN * 0.2),
-            FadeOutAndShiftDown(字节块内[13], DOWN * 0.2)
+            FadeOutAndShiftDown(字节块内[13], DOWN * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(字节块内[0], RIGHT),
@@ -2443,23 +2689,30 @@ class Jz(Scene):
             FadeOutAndShiftDown(字节块内[11], RIGHT),
             FadeOutAndShiftDown(字节块内[14], RIGHT),
             FadeOutAndShiftDown(字节块内[15], RIGHT),
-            FadeOutAndShiftDown(字节块内[6], RIGHT),
+            FadeOutAndShiftDown(字节块内[6], RIGHT)
         )
+        self.wait(1)
         #块内结束
         self.play(
-            Write(字节答案[2])
+            Write(字节答案[2]),
+            run_time = w
         )
+        self.wait(1.5)
         self.play(
             FadeOutAndShiftDown(字节答案[2], UP),
             ReplacementTransform(字节虚线内未知[1], 字节虚线内已知[1])
         )
+        self.wait(1)
         self.play(
-            Write(字节答案[3])
+            Write(字节答案[3]),
+            run_time = w
         )
+        self.wait(1.5)
         self.play(
             FadeOutAndShiftDown(字节答案[3], UP),
             ReplacementTransform(字节虚线内未知[0], 字节虚线内已知[0])
         )
+        self.wait(0.5)
         self.play(
             FadeOutAndShiftDown(字节地址括号, UP),
             FadeOutAndShiftDown(字节地址括号上字, UP)
@@ -2469,6 +2722,7 @@ class Jz(Scene):
             ApplyMethod(字节地址虚线.shift, UP * 1.8),
             ApplyMethod(字节虚线内已知.shift, UP * 1.8),
         )
+        self.wait(1.5)
         self.play(
             FadeOut(字节地址),
             FadeOut(字节地址虚线),
@@ -2495,19 +2749,21 @@ class Jz(Scene):
             Write(字节全虚线内未知)
         )
         self.play(
-            Write(字节答案[0])
+            Write(字节答案[0]),
+            run_time = w
         )
-
+        self.wait(1.5)
         self.play(
             FadeOutAndShiftDown(字节答案[0], UP)
         )
-
+        self.wait(1)
         self.play(
             FadeInFrom(字节全地址括号, DOWN)
         )
         self.play(
             FadeInFrom(字节全地址括号上字, DOWN)
         )
+        self.wait(1)
         #块内开始
         self.play(
             Write(字节块内[0]),
@@ -2519,54 +2775,77 @@ class Jz(Scene):
             Write(字节块内[11]),
             Write(字节块内[14]),
             Write(字节块内[15]),
-            FadeIn(字节块内[6])
+            FadeIn(字节块内[6]),
+            run_time = w
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(字节块内[12], DOWN * 0.2),
-            FadeInFrom(字节块内[13], DOWN * 0.2)
+            FadeInFrom(字节块内[13], DOWN * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(字节块内[16], DOWN * 0.2),
-            FadeInFrom(字节块内[17], DOWN * 0.2)
+            FadeInFrom(字节块内[17], DOWN * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(字节块内[5], RIGHT * 0.2),
-            FadeInFrom(字节块内[7], DOWN * 0.2)
+            FadeInFrom(字节块内[7], DOWN * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(字节块内[9], RIGHT * 0.2),
-            FadeInFrom(字节块内[8], DOWN * 0.2)
+            FadeInFrom(字节块内[8], DOWN * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
             Write(字节块内[18]),
-            Write(字节块内[19])
+            Write(字节块内[19]),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
-            Write(字节块内[20])
+            Write(字节块内[20]),
+            run_time = 0.5
         )
+        self.wait(0.75)
         self.play(
-            ReplacementTransform(字节全虚线内未知[1], 字节全虚线内已知[1]),
+            ReplacementTransform(字节全虚线内未知[1], 字节全虚线内已知[1])
+        )
+        self.wait(1.5)
+        self.play(
             FadeOut(字节块内[20])
         )
+        self.wait(0.3)
         self.play(
             FadeOut(字节块内[18]),
-            FadeOut(字节块内[19])
+            FadeOut(字节块内[19]),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(字节块内[9], RIGHT * 0.2),
-            FadeOutAndShiftDown(字节块内[8], DOWN * 0.2)
+            FadeOutAndShiftDown(字节块内[8], DOWN * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(字节块内[5], RIGHT * 0.2),
-            FadeOutAndShiftDown(字节块内[7], DOWN * 0.2)
+            FadeOutAndShiftDown(字节块内[7], DOWN * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(字节块内[16], DOWN * 0.2),
-            FadeOutAndShiftDown(字节块内[17], DOWN * 0.2)
+            FadeOutAndShiftDown(字节块内[17], DOWN * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(字节块内[12], DOWN * 0.2),
-            FadeOutAndShiftDown(字节块内[13], DOWN * 0.2)
+            FadeOutAndShiftDown(字节块内[13], DOWN * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(字节块内[0], RIGHT),
@@ -2578,16 +2857,20 @@ class Jz(Scene):
             FadeOutAndShiftDown(字节块内[11], RIGHT),
             FadeOutAndShiftDown(字节块内[14], RIGHT),
             FadeOutAndShiftDown(字节块内[15], RIGHT),
-            FadeOutAndShiftDown(字节块内[6], RIGHT),
+            FadeOutAndShiftDown(字节块内[6], RIGHT)
         )
+        self.wait(1)
         #块内结束
         self.play(
-            Write(字节全答案[0])
+            Write(字节全答案[0]),
+            run_time = w
         )
+        self.wait(1.5)
         self.play(
             FadeOutAndShiftDown(字节全答案[0], UP),
             ReplacementTransform(字节全虚线内未知[0], 字节全虚线内已知[0])
         )
+        self.wait(1)
         self.play(
             FadeOutAndShiftDown(字节全地址括号, UP),
             FadeOutAndShiftDown(字节全地址括号上字, UP)
@@ -2597,6 +2880,7 @@ class Jz(Scene):
             ApplyMethod(字节全地址虚线.shift, UP * 1.8),
             ApplyMethod(字节全虚线内已知.shift, UP * 1.8),
         )
+        self.wait(1.5)
         self.play(
             FadeOut(字节全地址),
             FadeOut(字节全地址虚线),
@@ -2618,12 +2902,15 @@ class Jz(Scene):
             Write(字节组虚线内未知)
         )
         self.play(
-            Write(字节答案[0])
+            Write(字节答案[0]),
+            run_time = w
         )
+        self.wait(1.5)
 
         self.play(
             FadeOutAndShiftDown(字节答案[0], UP)
         )
+        self.wait(0.75)
 
         self.play(
             FadeInFrom(字节组地址括号, DOWN)
@@ -2631,6 +2918,7 @@ class Jz(Scene):
         self.play(
             FadeInFrom(字节组地址括号上字, DOWN)
         )
+        self.wait(1)
         # 块内开始
         self.play(
             Write(字节块内[0]),
@@ -2642,54 +2930,76 @@ class Jz(Scene):
             Write(字节块内[11]),
             Write(字节块内[14]),
             Write(字节块内[15]),
-            FadeIn(字节块内[6])
+            FadeIn(字节块内[6]),
+            run_time = w
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(字节块内[12], DOWN * 0.2),
-            FadeInFrom(字节块内[13], DOWN * 0.2)
+            FadeInFrom(字节块内[13], DOWN * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(字节块内[16], DOWN * 0.2),
-            FadeInFrom(字节块内[17], DOWN * 0.2)
+            FadeInFrom(字节块内[17], DOWN * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(字节块内[5], RIGHT * 0.2),
-            FadeInFrom(字节块内[7], DOWN * 0.2)
+            FadeInFrom(字节块内[7], DOWN * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(字节块内[9], RIGHT * 0.2),
-            FadeInFrom(字节块内[8], DOWN * 0.2)
+            FadeInFrom(字节块内[8], DOWN * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
             Write(字节块内[18]),
-            Write(字节块内[19])
+            Write(字节块内[19]),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
-            Write(字节块内[20])
+            Write(字节块内[20]),
+            run_time = 0.5
         )
+        self.wait(0.5)
         self.play(
-            ReplacementTransform(字节组虚线内未知[2], 字节组虚线内已知[2]),
+            ReplacementTransform(字节组虚线内未知[2], 字节组虚线内已知[2])
+        )
+        self.wait(1.5)
+        self.play(
             FadeOut(字节块内[20])
         )
         self.play(
             FadeOut(字节块内[18]),
-            FadeOut(字节块内[19])
+            FadeOut(字节块内[19]),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(字节块内[9], RIGHT * 0.2),
-            FadeOutAndShiftDown(字节块内[8], DOWN * 0.2)
+            FadeOutAndShiftDown(字节块内[8], DOWN * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(字节块内[5], RIGHT * 0.2),
-            FadeOutAndShiftDown(字节块内[7], DOWN * 0.2)
+            FadeOutAndShiftDown(字节块内[7], DOWN * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(字节块内[16], DOWN * 0.2),
-            FadeOutAndShiftDown(字节块内[17], DOWN * 0.2)
+            FadeOutAndShiftDown(字节块内[17], DOWN * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(字节块内[12], DOWN * 0.2),
-            FadeOutAndShiftDown(字节块内[13], DOWN * 0.2)
+            FadeOutAndShiftDown(字节块内[13], DOWN * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(字节块内[0], RIGHT),
@@ -2701,8 +3011,9 @@ class Jz(Scene):
             FadeOutAndShiftDown(字节块内[11], RIGHT),
             FadeOutAndShiftDown(字节块内[14], RIGHT),
             FadeOutAndShiftDown(字节块内[15], RIGHT),
-            FadeOutAndShiftDown(字节块内[6], RIGHT),
+            FadeOutAndShiftDown(字节块内[6], RIGHT)
         )
+        self.wait(1)
         # 块内结束
         # Cache 入
         self.play(
@@ -2717,94 +3028,130 @@ class Jz(Scene):
             Write(字节Cache[23]),
             Write(字节Cache[26]),
             Write(字节Cache[27]),
-            FadeIn(字节Cache[6])
+            FadeIn(字节Cache[6]),
+            run_time = w
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(字节Cache[24], DOWN * 0.2),
-            FadeInFrom(字节Cache[25], DOWN * 0.2)
+            FadeInFrom(字节Cache[25], DOWN * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(字节Cache[28], DOWN * 0.2),
-            FadeInFrom(字节Cache[29], DOWN * 0.2)
+            FadeInFrom(字节Cache[29], DOWN * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(字节Cache[20], LEFT * 0.2),
-            FadeInFrom(字节Cache[7], DOWN * 0.2)
+            FadeInFrom(字节Cache[7], DOWN * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(字节Cache[21], LEFT * 0.2),
-            FadeInFrom(字节Cache[8], DOWN * 0.2)
+            FadeInFrom(字节Cache[8], DOWN * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(字节Cache[12], RIGHT * 0.2),
-            FadeInFrom(字节Cache[13], RIGHT * 0.2)
+            FadeInFrom(字节Cache[13], RIGHT * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
             FadeInFrom(字节Cache[17], RIGHT * 0.2),
-            FadeInFrom(字节Cache[18], RIGHT * 0.2)
+            FadeInFrom(字节Cache[18], RIGHT * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
-            Write(字节Cache[15])
+            Write(字节Cache[15]),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
-            FadeInFrom(字节Cache[14], RIGHT * 0.2)
+            FadeInFrom(字节Cache[14], RIGHT * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
-            FadeInFrom(字节Cache[19], RIGHT * 0.2)
+            FadeInFrom(字节Cache[19], RIGHT * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
-            Write(字节Cache[16])
+            Write(字节Cache[16]),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
-            FadeInFrom(字节Cache[5], RIGHT * 0.2)
+            FadeInFrom(字节Cache[5], RIGHT * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.3)
         self.play(
-            FadeInFrom(字节Cache[9], RIGHT * 0.2)
+            FadeInFrom(字节Cache[9], RIGHT * 0.2),
+            run_time = 0.5
         )
+        self.wait(0.5)
 
         # 答案
         self.play(
             ReplacementTransform(字节组虚线内未知[1], 字节组虚线内已知[1])
         )
-
+        self.wait(1.5)
         # Cache 出
         self.play(
-            FadeOutAndShiftDown(字节Cache[9], RIGHT * 0.2)
+            FadeOutAndShiftDown(字节Cache[9], RIGHT * 0.2),
+            run_time = o
         )
         self.play(
-            FadeOutAndShiftDown(字节Cache[5], RIGHT * 0.2)
+            FadeOutAndShiftDown(字节Cache[5], RIGHT * 0.2),
+            run_time = o
         )
         self.play(
-            FadeOutAndShiftDown(字节Cache[19], RIGHT * 0.2)
+            FadeOutAndShiftDown(字节Cache[19], RIGHT * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(字节Cache[16], RIGHT * 0.2),
-            FadeOutAndShiftDown(字节Cache[14], RIGHT * 0.2)
+            FadeOutAndShiftDown(字节Cache[14], RIGHT * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(字节Cache[17], RIGHT * 0.2),
-            FadeOutAndShiftDown(字节Cache[18], RIGHT * 0.2)
+            FadeOutAndShiftDown(字节Cache[18], RIGHT * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(字节Cache[13], RIGHT * 0.2),
             FadeOutAndShiftDown(字节Cache[12], RIGHT * 0.2),
-            FadeOutAndShiftDown(字节Cache[15], RIGHT * 0.2)
+            FadeOutAndShiftDown(字节Cache[15], RIGHT * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(字节Cache[21], LEFT * 0.2),
-            FadeOutAndShiftDown(字节Cache[8], DOWN * 0.2)
+            FadeOutAndShiftDown(字节Cache[8], DOWN * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(字节Cache[20], LEFT * 0.2),
-            FadeOutAndShiftDown(字节Cache[7], DOWN * 0.2)
+            FadeOutAndShiftDown(字节Cache[7], DOWN * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(字节Cache[28], DOWN * 0.2),
-            FadeOutAndShiftDown(字节Cache[29], DOWN * 0.2)
+            FadeOutAndShiftDown(字节Cache[29], DOWN * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(字节Cache[24], DOWN * 0.2),
-            FadeOutAndShiftDown(字节Cache[25], DOWN * 0.2)
+            FadeOutAndShiftDown(字节Cache[25], DOWN * 0.2),
+            run_time = o
         )
         self.play(
             FadeOutAndShiftDown(字节Cache[0], RIGHT * 0.2),
@@ -2820,29 +3167,373 @@ class Jz(Scene):
             FadeOutAndShiftDown(字节Cache[27], RIGHT * 0.2),
             FadeOutAndShiftDown(字节Cache[6], RIGHT * 0.2)
         )
-
-
-
-
-
         self.wait(1)
-        '''
-        self.add(全地址)
-        self.add(全地址括号)
-        self.add(全地址括号上字)
-        self.add(全地址虚线)
-        '''
+        self.play(
+            Write(字节组答案[3]),
+            run_time = w
+        )
+        self.wait(1.5)
+        self.play(
+            FadeOutAndShiftDown(字节组答案[3], UP),
+            ReplacementTransform(字节组虚线内未知[0], 字节组虚线内已知[0])
+        )
+        self.wait(1)
+        self.play(
+            FadeOutAndShiftDown(字节组地址括号, UP),
+            FadeOutAndShiftDown(字节组地址括号上字, UP)
+        )
+        self.play(
+            ApplyMethod(字节组地址.shift, UP * 1.8),
+            ApplyMethod(字节组地址虚线.shift, UP * 1.8),
+            ApplyMethod(字节组虚线内已知.shift, UP * 1.8),
+        )
+        self.wait(1.5)
+        self.play(
+            FadeOut(字节组地址),
+            FadeOut(字节组地址虚线),
+            FadeOut(字节组虚线内已知)
+        )
+        字节组地址.shift(DOWN * 1.8)
+        字节组地址虚线.shift(DOWN * 1.8)
+        字节组虚线内已知.shift(DOWN * 1.8)
+
+        self.play(
+            FadeOutAndShiftDown(问题[2], DOWN),
+            FadeInFrom(问题[3], UP)
+        )
+        # 第四问
+        self.play(
+            FadeIn(字节四组地址)
+        )
+        self.play(
+            Write(字节四组地址虚线)
+        )
+        self.play(
+            Write(字节四组虚线内未知)
+        )
+        self.play(
+            Write(字节四组答案[0]),
+            run_time = w
+        )
+        self.wait(1.5)
+
+        self.play(
+            FadeOutAndShiftDown(字节四组答案[0], UP)
+        )
+        self.wait(0.3)
+
+        self.play(
+            FadeInFrom(字节四组地址括号, DOWN)
+        )
+        self.play(
+            FadeInFrom(字节四组地址括号上字, DOWN)
+        )
+        for i in range(21):
+            字节块内[i].shift(RIGHT * 0.6 + DOWN * 0.5)
+        self.wait(0.3)
+        self.play(
+            Write(字节块内[0]),
+            Write(字节块内[1]),
+            Write(字节块内[2]),
+            Write(字节块内[3]),
+            Write(字节块内[4]),
+            Write(字节块内[10]),
+            Write(字节块内[11]),
+            Write(字节块内[14]),
+            Write(字节块内[15]),
+            FadeIn(字节块内[6]),
+            run_time = w
+        )
+        self.wait(0.3)
+        self.play(
+            FadeInFrom(字节块内[12], DOWN * 0.2),
+            FadeInFrom(字节块内[13], DOWN * 0.2),
+            run_time = 0.3
+        )
+        self.wait(0.3)
+        self.play(
+            FadeInFrom(字节块内[16], DOWN * 0.2),
+            FadeInFrom(字节块内[17], DOWN * 0.2),
+            run_time = 0.3
+        )
+        self.wait(0.3)
+        self.play(
+            FadeInFrom(字节块内[5], RIGHT * 0.2),
+            FadeInFrom(字节块内[7], DOWN * 0.2),
+            run_time = 0.3
+        )
+        self.wait(0.3)
+        self.play(
+            FadeInFrom(字节块内[9], RIGHT * 0.2),
+            FadeInFrom(字节块内[8], DOWN * 0.2),
+            run_time = 0.3
+        )
+        self.wait(0.3)
+        self.play(
+            Write(字节块内[18]),
+            Write(字节块内[19]),
+            run_time = 1
+        )
+        self.wait(0.3)
+        self.play(
+            Write(字节块内[20]),
+            run_time = 1
+        )
+        self.wait(1)
+
+        self.play(
+            ReplacementTransform(字节四组虚线内未知[2], 字节四组虚线内已知[2])
+        )
+        self.wait(1.5)
+        self.play(
+            FadeOut(字节块内[20])
+        )
+
+        self.play(
+            FadeOut(字节块内[18]),
+            FadeOut(字节块内[19]),
+            run_time = o
+        )
+        self.play(
+            FadeOutAndShiftDown(字节块内[9], RIGHT * 0.2),
+            FadeOutAndShiftDown(字节块内[8], DOWN * 0.2),
+            run_time = o
+        )
+        self.play(
+            FadeOutAndShiftDown(字节块内[5], RIGHT * 0.2),
+            FadeOutAndShiftDown(字节块内[7], DOWN * 0.2),
+            run_time = o
+        )
+        self.play(
+            FadeOutAndShiftDown(字节块内[16], DOWN * 0.2),
+            FadeOutAndShiftDown(字节块内[17], DOWN * 0.2),
+            run_time = o
+        )
+        self.play(
+            FadeOutAndShiftDown(字节块内[12], DOWN * 0.2),
+            FadeOutAndShiftDown(字节块内[13], DOWN * 0.2),
+            run_time = o
+        )
+        self.play(
+            FadeOutAndShiftDown(字节块内[0], RIGHT),
+            FadeOutAndShiftDown(字节块内[1], RIGHT),
+            FadeOutAndShiftDown(字节块内[2], RIGHT),
+            FadeOutAndShiftDown(字节块内[3], RIGHT),
+            FadeOutAndShiftDown(字节块内[4], RIGHT),
+            FadeOutAndShiftDown(字节块内[10], RIGHT),
+            FadeOutAndShiftDown(字节块内[11], RIGHT),
+            FadeOutAndShiftDown(字节块内[14], RIGHT),
+            FadeOutAndShiftDown(字节块内[15], RIGHT),
+            FadeOutAndShiftDown(字节块内[6], RIGHT)
+        )
+        self.wait(1)
+        # 四Cache 入
+        # Cache 入
+        self.play(
+            Write(字节四Cache[0]),
+            Write(字节四Cache[1]),
+            Write(字节四Cache[2]),
+            Write(字节四Cache[3]),
+            Write(字节四Cache[4]),
+            Write(字节四Cache[10]),
+            Write(字节四Cache[11]),
+            Write(字节四Cache[22]),
+            Write(字节四Cache[23]),
+            Write(字节四Cache[26]),
+            Write(字节四Cache[27]),
+            FadeIn(字节四Cache[6]),
+            run_time = w
+        )
+        self.wait(0.3)
+        self.play(
+            FadeInFrom(字节四Cache[24], DOWN * 0.2),
+            FadeInFrom(字节四Cache[25], DOWN * 0.2),
+            run_time = 0.5
+        )
+        self.wait(0.3)
+        self.play(
+            FadeInFrom(字节四Cache[28], DOWN * 0.2),
+            FadeInFrom(字节四Cache[29], DOWN * 0.2),
+            run_time = 0.5
+        )
+        self.wait(0.3)
+        self.play(
+            FadeInFrom(字节四Cache[20], LEFT * 0.2),
+            FadeInFrom(字节四Cache[7], UP * 0.2),
+            run_time = 0.5
+        )
+        self.wait(0.3)
+        self.play(
+            FadeInFrom(字节四Cache[21], LEFT * 0.2),
+            FadeInFrom(字节四Cache[8], UP * 0.2),
+            run_time = 0.5
+        )
+        self.wait(0.3)
+        self.play(
+            FadeInFrom(字节四Cache[12], RIGHT * 0.2),
+            FadeInFrom(字节四Cache[13], RIGHT * 0.2),
+            run_time = 0.5
+        )
+        self.wait(0.3)
+        self.play(
+            FadeInFrom(字节四Cache[17], RIGHT * 0.2),
+            FadeInFrom(字节四Cache[18], RIGHT * 0.2),
+            run_time = 0.5
+        )
+        self.wait(0.3)
+        self.play(
+            Write(字节四Cache[15]),
+            run_time = 0.5
+        )
+        self.wait(0.3)
+        self.play(
+            FadeInFrom(字节四Cache[14], RIGHT * 0.2),
+            run_time = 0.5
+        )
+        self.wait(0.3)
+        self.play(
+            FadeInFrom(字节四Cache[19], RIGHT * 0.2),
+            run_time = 0.5
+        )
+        self.wait(0.3)
+        self.play(
+            Write(字节四Cache[16]),
+            run_time = 0.5
+        )
+        self.wait(0.3)
+        self.play(
+            FadeInFrom(字节四Cache[5], RIGHT * 0.2),
+            run_time = 0.5
+        )
+        self.wait(0.3)
+        self.play(
+            FadeInFrom(字节四Cache[9], RIGHT * 0.2),
+            run_time = 0.5
+        )
+        self.wait(0.3)
+
+        # 答案
+        self.play(
+            ReplacementTransform(字节四组虚线内未知[1], 字节四组虚线内已知[1])
+        )
+        self.wait(1.5)
+        # Cache 出
+        self.play(
+            FadeOutAndShiftDown(字节四Cache[9], RIGHT * 0.2),
+            run_time = o
+        )
+        self.play(
+            FadeOutAndShiftDown(字节四Cache[5], RIGHT * 0.2),
+            run_time = o
+        )
+        self.play(
+            FadeOutAndShiftDown(字节四Cache[19], RIGHT * 0.2),
+            run_time = o
+        )
+        self.play(
+            FadeOutAndShiftDown(字节四Cache[16], RIGHT * 0.2),
+            FadeOutAndShiftDown(字节四Cache[14], RIGHT * 0.2),
+            run_time = o
+        )
+        self.play(
+            FadeOutAndShiftDown(字节四Cache[17], RIGHT * 0.2),
+            FadeOutAndShiftDown(字节四Cache[18], RIGHT * 0.2),
+            run_time = o
+        )
+        self.play(
+            FadeOutAndShiftDown(字节四Cache[13], RIGHT * 0.2),
+            FadeOutAndShiftDown(字节四Cache[12], RIGHT * 0.2),
+            FadeOutAndShiftDown(字节四Cache[15], RIGHT * 0.2),
+            run_time = o
+        )
+        self.play(
+            FadeOutAndShiftDown(字节四Cache[21], LEFT * 0.2),
+            FadeOutAndShiftDown(字节四Cache[8], UP * 0.2),
+            run_time = o
+        )
+        self.play(
+            FadeOutAndShiftDown(字节四Cache[20], LEFT * 0.2),
+            FadeOutAndShiftDown(字节四Cache[7], UP * 0.2),
+            run_time = o
+        )
+        self.play(
+            FadeOutAndShiftDown(字节四Cache[28], DOWN * 0.2),
+            FadeOutAndShiftDown(字节四Cache[29], DOWN * 0.2),
+            run_time = o
+        )
+        self.play(
+            FadeOutAndShiftDown(字节四Cache[24], DOWN * 0.2),
+            FadeOutAndShiftDown(字节四Cache[25], DOWN * 0.2),
+            run_time = o
+        )
+        self.play(
+            FadeOutAndShiftDown(字节四Cache[0], RIGHT * 0.2),
+            FadeOutAndShiftDown(字节四Cache[1], RIGHT * 0.2),
+            FadeOutAndShiftDown(字节四Cache[2], RIGHT * 0.2),
+            FadeOutAndShiftDown(字节四Cache[3], RIGHT * 0.2),
+            FadeOutAndShiftDown(字节四Cache[4], RIGHT * 0.2),
+            FadeOutAndShiftDown(字节四Cache[10], RIGHT * 0.2),
+            FadeOutAndShiftDown(字节四Cache[11], RIGHT * 0.2),
+            FadeOutAndShiftDown(字节四Cache[22], RIGHT * 0.2),
+            FadeOutAndShiftDown(字节四Cache[23], RIGHT * 0.2),
+            FadeOutAndShiftDown(字节四Cache[26], RIGHT * 0.2),
+            FadeOutAndShiftDown(字节四Cache[27], RIGHT * 0.2),
+            FadeOutAndShiftDown(字节四Cache[6], RIGHT * 0.2)
+        )
+
+        #Cache结束
+        self.wait(1)
+        self.play(
+            Write(字节四组答案[3]),
+            run_time = w
+        )
+        self.wait(1.5)
+
+        self.play(
+            FadeOutAndShiftDown(字节四组答案[3], UP),
+            ReplacementTransform(字节四组虚线内未知[0], 字节四组虚线内已知[0])
+        )
+
+        self.play(
+            FadeOutAndShiftDown(字节四组地址括号, UP),
+            FadeOutAndShiftDown(字节四组地址括号上字, UP)
+        )
+        self.wait(0.3)
+        self.play(
+            ApplyMethod(字节四组地址.shift, UP * 1.8),
+            ApplyMethod(字节四组地址虚线.shift, UP * 1.8),
+            ApplyMethod(字节四组虚线内已知.shift, UP * 1.8),
+        )
+        self.wait(1.5)
+        self.play(
+            FadeOut(字节四组地址),
+            FadeOut(字节四组地址虚线),
+            FadeOut(字节四组虚线内已知)
+        )
+        字节四组地址.shift(DOWN * 1.8)
+        字节四组地址虚线.shift(DOWN * 1.8)
+        字节四组虚线内已知.shift(DOWN * 1.8)
+        self.play(
+            FadeOut(问题[3])
+        )
+        self.play(
+            FadeOut(字节编址)
+        )
+        self.play(
+            FadeOut(例题)
+        )
 
 
 
 
-        """"
         #全部结束
         self.wait(1)
         self.play(
             FadeOut(line1),
             FadeOut(T1),
             FadeOut(T2),
+            FadeOut(T2_1),
+            FadeOut(T2_2),
             run_time=1.5
         )
         self.play(
@@ -2866,7 +3557,7 @@ class Jz(Scene):
         logo.move_to(UP * 0.2)
         logo.set_height(1)
         self.add(logo)
-        """
+
 
 
 
